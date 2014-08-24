@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="jp">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Node.jsで作るお手軽APIのススメ</title>
+
+		<meta name="description" content="社内向けLT用スライド@20140807">
+		<meta name="author" content="まつした">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<div style="font-size:70px;line-height:80px;">Node.jsで作るAPIのススメ</div>
+					<br>
+					<p>
+						<small>Created by Rei Matsushita / <a href="http://twitter.com/rei_m">@rei_m</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>自己紹介</h2>
+					<br>
+					<ul>
+						<li>株式会社 一休 レストラン事業本部所属</li>
+						<li>twitter : https://twitter.com/rei_m</li>
+						<li>facebook : https://www.facebook.com/rei.matsushita</li>
+						<li>ぶろぐ : http://rei19.hatenablog.com</li>
+						<li>サーバサイド・クライアントサイド・ネイティブアプリ等なんでもやります。</li>
+					</ul>
+
+					<aside class="notes">
+						一枚目は自己紹介かなー
+					</aside>
+				</section>
+
+				<section>
+					<h2>今日のテーマ</h2>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">Node.jsを使ってAPIをつくる</div>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">そもそもNode.jsって</div>
+					<br>
+					<br>
+					<ol>
+						<li class="fragment">サーバサイドで動くJavaScript</li>
+						<li class="fragment">シングルスレッド</li>
+						<li class="fragment">イベントループモデル</li>
+						<li class="fragment">ノンブロッキングI/O</li>
+					</ol>
+					<aside class="notes">
+						通常、Apacheなどはリクエストに対してスレッドが割り当てられてレスポンスを返しますが、Node.jsは1スレッドで動いていてイベントが発生したタイミングで処理しています。例えば、DBのセレクトが発生した場合、ブロッキングであれば開いてクエリ投げて結果が返ってくるという流れですが、この間新しいリクエストは受け付けないわけですな。Node.jsの場合はイベントループ/ノンブロッキングなので一連の流れの中でもリクエストを受け付ける事が出来ます。
+					</aside>
+				</section>
+
+				<section>
+					<div>Node.jsは少ないリソースを効率的に使ってリクエストを処理することができる</div>
+					<br>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">これは省エネですね</div>
+					<br>
+					<img src="img/honjitsuno_eco_03.jpg" alt="">
+					<aside class="notes">
+						で、Nodeを使ってAPIを作ってみようというところで次のモジュールを紹介します。
+					</aside>
+				</section>
+
+				<section>
+					<h2>restify</h2>
+					<br>
+					<a href="https://www.npmjs.org/package/restify" target="_blank">https://www.npmjs.org/package/restify</a>
+					<div>REST APIをNodeで作成するためのモジュール</div>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<div>app.js</div>
+					<pre><code data-trim contenteditable>
+var restify = require('restify');
+
+var server = restify.createServer({
+  name: 'myapp',
+  version: '1.0.0'
+});
+server.use(restify.acceptParser(server.acceptable));
+server.use(restify.queryParser());
+server.use(restify.bodyParser());
+server.get('/echo/:name', function (req, res, next) {
+  res.send(req.params);
+  return next();
+});
+server.listen(8080, function () {
+  console.log('%s listening at %s', server.name, server.url);
+});
+
+					</code></pre>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">これだけです</div>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">起動してみます</div>
+					<aside class="notes">
+						実際のデモ
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">とてもお手軽ですね！</div>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<div style="font-size:70px;">まとめ</div>
+					<br>
+					<br>
+					<ol>
+						<li>Node.jsは多くのリクエストを処理できる仕組みをもっており、比較的性能の小さいサーバ上でもパフォーマンスを出せる</li>
+						<li>restifyというモジュールを使うと簡単にRESTfulなAPIを作る事ができる</li>
+					</ol>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+					<h3>ご清聴ありがとうございました。</h3>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+<!-- コードを書く時 -->
+<!--
+				<section>
+
+					<h2>Pretty Code</h2>
+					<pre><code data-trim contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) {
+        node.className += ' roll';
+      }
+    }
+  }
+}
+					</code></pre>
+
+					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+				</section>
+
+-->
+<!-- フラグメント -->
+<!--
+				<section>
+					<section id="fragments">
+						<h2>Fragmented Views</h2>
+						<p>Hit the next arrow...</p>
+						<p class="fragment">... to step through ...</p>
+						<ol>
+							<li class="fragment"><code>any type</code></li>
+							<li class="fragment"><em>of view</em></li>
+							<li class="fragment"><strong>fragments</strong></li>
+						</ol>
+
+						<aside class="notes">
+							This slide has fragments which are also stepped through in the notes window.
+						</aside>
+					</section>
+					<section>
+						<h2>Fragment Styles</h2>
+						<p>There's a few styles of fragments, like:</p>
+						<p class="fragment grow">grow</p>
+						<p class="fragment shrink">shrink</p>
+						<p class="fragment roll-in">roll-in</p>
+						<p class="fragment fade-out">fade-out</p>
+						<p class="fragment highlight-red">highlight-red</p>
+						<p class="fragment highlight-green">highlight-green</p>
+						<p class="fragment highlight-blue">highlight-blue</p>
+						<p class="fragment current-visible">current-visible</p>
+						<p class="fragment highlight-current-blue">highlight-current-blue</p>
+					</section>
+				</section>
+-->
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
