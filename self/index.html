@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Node.jsで作るお手軽APIのススメ</title>
+		<title>自己紹介用</title>
 
-		<meta name="description" content="社内向けLT用スライド@20140807">
+		<meta name="description" content="自己紹介用">
 		<meta name="author" content="まつした">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -43,22 +43,30 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<div style="font-size:70px;line-height:80px;">Node.jsで作るAPIのススメ</div>
+					<div style="font-size:70px;line-height:80px;">自己紹介</div>
 					<br>
 					<p>
 						<small>Created by Rei Matsushita / <a href="http://twitter.com/rei_m">@rei_m</a></small>
 					</p>
 				</section>
 
-				<section>
-					<h2>自己紹介</h2>
+				<section id="fragments">
+					<h3>お話の前に</h3>
 					<br>
+					<p class="fragment" style="text-align:left;">30分で自己紹介作ってと言われたので誤字とかあったらごめんなさい・・・</p>
+					<aside class="notes">
+					</aside>
+				</section>
+
+
+				<section>
 					<ul>
-						<li>みそじになりました。</li>
+						<li>松下 嶺（まつした れい）といいます</li>
+						<li>株式会社 一休 レストラン事業本部所属</li>
 						<li>twitter : https://twitter.com/rei_m</li>
 						<li>facebook : https://www.facebook.com/rei.matsushita</li>
-						<li>ぶろぐ : もやもやエンジニア（http://rei19.hatenablog.com）</li>
-						<li>サーバサイド、クライアントサイド、ネイティブアプリ等なんでもやります。直近はRaspberry pi か arduino触りたい</li>
+						<li>ぶろぐ : http://rei19.hatenablog.com</li>
+						<li>サーバサイド・クライアントサイド・ネイティブアプリ等なんでもやります。</li>
 					</ul>
 
 					<aside class="notes">
@@ -67,105 +75,51 @@
 				</section>
 
 				<section>
-					<h2>今日のテーマ</h2>
-					<aside class="notes">
-					</aside>
-				</section>
-
-				<section>
-					<div style="font-size:70px;">Node.jsを使ってAPIをつくる</div>
-					<aside class="notes">
-					</aside>
-				</section>
-
-				<section>
-					<div style="font-size:70px;">そもそもNode.jsって</div>
+					<h3>経歴</h3>
 					<br>
+					<div style="text-align:left;">
+						新卒で法学部だったけどモノづくりの仕事をしたいと思い、SEの道に入る。金融系のシステム構築・開発に２年半ほど携わり現職へ。現職では一休.comレストランやECサイトその他、新規事業を中心に担当。開発以外の企画や運用なども。現在はAndroidのアプリを作るプロジェクトや、現場を大幅に改善するプロジェクトに携わっています。
+					</div>
+					<aside class="notes">
+					</aside>
+				</section>
+
+				<section>
+					<h3>経験言語</h3>
 					<br>
-					<ol>
-						<li class="fragment">サーバサイドで動くJavaScript</li>
-						<li class="fragment">シングルスレッド</li>
-						<li class="fragment">イベントループモデル</li>
-						<li class="fragment">ノンブロッキングI/O</li>
-					</ol>
+					<div style="text-align:left;">
+						ASP、ASP.NET、PHP、Java、JavaScript、Node.js、Go。得意というか好きなのはJavaScript。今はAndroidアプリのプロジェクトにチャレンジしています。業務外ではRORとScala/Play2を触りはじめている感じ。
+					</div>
 					<aside class="notes">
-						通常、Apacheなどはリクエストに対してスレッドが割り当てられてレスポンスを返しますが、Node.jsは1スレッドで動いていてイベントが発生したタイミングで処理しています。例えば、DBのセレクトが発生した場合、ブロッキングであれば開いてクエリ投げて結果が返ってくるという流れですが、この間新しいリクエストは受け付けないわけですな。Node.jsの場合はイベントループ/ノンブロッキングなので一連の流れの中でもリクエストを受け付ける事が出来ます。
 					</aside>
 				</section>
 
 				<section>
-					<div>Node.jsは少ないリソースを効率的に使ってリクエストを処理することができる</div>
+					<h3>業務外のことなど</h3>
 					<br>
+					<div style="text-align:left;">
+						セミナーに顔を出したり、普段の業務では使わないツールを使ってモノ作ったりしてます。休みの日でもコード書くのが好き。でも基本はゲームしてたい。
+					</div>
 					<aside class="notes">
 					</aside>
 				</section>
 
 				<section>
-					<h2>restify</h2>
+					<h3>これから</h3>
 					<br>
-					<a href="https://www.npmjs.org/package/restify" target="_blank">https://www.npmjs.org/package/restify</a>
-					<div>REST APIをNodeで作成するためのモジュール</div>
+					<div style="text-align:left;">
+						サーバ側・フロント側問わず広く手を広げつつ、変化が早いこの業界で誰にも負けない武器を持つエンジニアを目指してます。
+					</div>
 					<aside class="notes">
 					</aside>
 				</section>
 
 				<section>
-					<div>app.js</div>
-					<pre><code data-trim contenteditable>
-var restify = require('restify');
-
-var server = restify.createServer({
-  name: 'myapp',
-  version: '1.0.0'
-});
-server.use(restify.acceptParser(server.acceptable));
-server.use(restify.queryParser());
-server.use(restify.bodyParser());
-server.get('/echo/:name', function (req, res, next) {
-  res.send(req.params);
-  return next();
-});
-server.listen(8080, function () {
-  console.log('%s listening at %s', server.name, server.url);
-});
-
-					</code></pre>
+					<div style="font-size:70px;">よろしくお願いします！</div>
 					<aside class="notes">
 					</aside>
 				</section>
 
-				<section>
-					<div style="font-size:70px;">これだけです</div>
-					<aside class="notes">
-					</aside>
-				</section>
-
-				<section>
-					<div style="font-size:70px;">起動してみます</div>
-					<aside class="notes">
-						実際のデモ
-					</aside>
-				</section>
-
-				<section>
-					<div style="font-size:70px;">とてもお手軽ですね！</div>
-					<aside class="notes">
-
-					</aside>
-				</section>
-
-				<section>
-					<div style="font-size:70px;">まとめ</div>
-					<br>
-					<br>
-					<ol>
-						<li>Node.jsは多くのリクエストを処理できる仕組みをもっており、比較的性能の小さいサーバ上でもパフォーマンスを出せる</li>
-						<li>restifyというモジュールを使うと簡単にRESTfulなAPIを作る事ができる</li>
-					</ol>
-					<aside class="notes">
-
-					</aside>
-				</section>
 
 				<section>
 					<h3>ご清聴ありがとうございました。</h3>
