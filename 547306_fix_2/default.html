@@ -73,22 +73,26 @@
 		//スワイプの方向（left／right）を取得
 		function onTouchMove(event) {
 			var distanceX = positionX - getPositionX(event);
-			var distanceY = positionY - getPositionY(event);
 			if($calendar.fullCalendar('getView').type === 'month') {
+				// 月表示の場合はx軸しかみない
 				if (distanceX > 70) {
 					direction = 'next';
 				} else if (distanceX < -70){
 					direction = 'prev';
 				}
 			} else {
-				if (distanceX > 70 && Math.abs(distanceY) < Math.abs(distanceX)) {
-					direction = 'next';
-				} else if (distanceX < -70 && Math.abs(distanceY) < Math.abs(distanceX)){
-					direction = 'prev';
+				// それ以外の場合はy軸の移動距離が閾値以下の場合のみ判定
+				var distanceY = positionY - getPositionY(event);
+				if(Math.abs(distanceY) < 30) {
+					if (distanceX > 70) {
+						direction = 'next';
+					} else if (distanceX < -70){
+						direction = 'prev';
+					}
 				}
 			}
 		}
-console.dir();
+
 		function onTouchEnd(event) {
 			if (direction !== ''){
 				$calendar.fullCalendar(direction);
@@ -140,7 +144,7 @@ console.dir();
 		font-size: 1.5em;
 	}
 
-	.c_year, .c_month, .c_day {
+	.c_year, .c_month_day, .c_month, .c_day {
 		text-align: left;
 	}
 </style>

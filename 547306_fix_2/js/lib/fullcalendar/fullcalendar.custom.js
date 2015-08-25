@@ -8616,7 +8616,7 @@ function Calendar_constructor(element, overrides) {
 
 	function updateHeaderTitle() {
 		// coconala ヘッダの更新をカスタム
-		var d = currentView.calendar.selectedDate;
+		var d = (currentView.type === 'month') ? currentView.calendar.getDate() : currentView.calendar.selectedDate;
 		header.updateTitleCustom(d.year() + '年', (d.month() + 1) + '月', (currentView.type === 'agendaDay')?d.date() + '日':'');
 	}
 
@@ -9180,7 +9180,7 @@ function Header(calendar, options) {
 
 					if (buttonName == 'title') {
 						// coconala タイトルを編集
-						groupChildren = groupChildren.add($('<div class="c_year">&nbsp;</div><div class="c_month">&nbsp;</div><div class="c_day">&nbsp;</div>')); // we always want it to take up height
+						groupChildren = groupChildren.add($('<div class="c_year">&nbsp;</div><div class="c_month_day"><span class="c_month">&nbsp;</span><span class="c_day">&nbsp;</span></div>')); // we always want it to take up height
 						isOnlyButtons = false;
 					}
 					else {
