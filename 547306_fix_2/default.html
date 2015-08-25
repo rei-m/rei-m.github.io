@@ -56,35 +56,34 @@
 			}]
 		});
 
-		$calendar.on('touchstart', onTouchStart); //指が触れたか検知
-		$calendar.on('touchmove', onTouchMove); //指が動いたか検知
-		$calendar.on('touchend', onTouchEnd); //指が離れたか検知
+		$calendar
+			.on('touchstart', onTouchStart)
+			.on('touchmove', onTouchMove)
+			.on('touchend', onTouchEnd);
+
 		var direction, position;
 
 		//スワイプ開始時の横方向の座標を格納
 		function onTouchStart(event) {
 			position = getPosition(event);
-			direction = ''; //一度リセットする
+			direction = '';
 		}
 
 		//スワイプの方向（left／right）を取得
 		function onTouchMove(event) {
-			if (position - getPosition(event) > 70) { // 70px以上移動しなければスワイプと判断しない
-				direction = 'left'; //左と検知
-			} else if (position - getPosition(event) < -70){  // 70px以上移動しなければスワイプと判断しない
-				direction = 'right'; //右と検知
+			if (position - getPosition(event) > 70) {
+				direction = 'next';
+			} else if (position - getPosition(event) < -70){
+				direction = 'prev';
 			}
 		}
 
 		function onTouchEnd(event) {
-			if (direction == 'right'){
-				$calendar.fullCalendar('prev');
-			} else if (direction == 'left'){
-				 $calendar.fullCalendar('next');
+			if (direction !== ''){
+				$calendar.fullCalendar(direction);
 			}
 		}
 
-		//横方向の座標を取得
 		function getPosition(event) {
 			return event.originalEvent.touches[0].pageX;
 		}
