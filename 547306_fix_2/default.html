@@ -10,7 +10,7 @@
 <script>
 	$(function() {
 
-		$('#calendar').fullCalendar({
+		var $calendar = $('#calendar').fullCalendar({
 			defaultDate: '2015-08-26',
 			now: '2015-08-30T16:00:00',
 			monthYearFormat: 'MMMM',
@@ -56,9 +56,9 @@
 			}]
 		});
 
-		$('#calendar').on('touchstart', onTouchStart); //指が触れたか検知
-		$('#calendar').on('touchmove', onTouchMove); //指が動いたか検知
-		$('#calendar').on('touchend', onTouchEnd); //指が離れたか検知
+		$calendar.on('touchstart', onTouchStart); //指が触れたか検知
+		$calendar.on('touchmove', onTouchMove); //指が動いたか検知
+		$calendar.on('touchend', onTouchEnd); //指が離れたか検知
 		var direction, position;
 
 		//スワイプ開始時の横方向の座標を格納
@@ -78,9 +78,9 @@
 
 		function onTouchEnd(event) {
 			if (direction == 'right'){
-				alert('右だよ');
+				$calendar.fullCalendar('prev');
 			} else if (direction == 'left'){
-				 alert('左だよ');
+				 $calendar.fullCalendar('next');
 			}
 		}
 
