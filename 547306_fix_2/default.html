@@ -61,31 +61,46 @@
 			.on('touchmove', onTouchMove)
 			.on('touchend', onTouchEnd);
 
-		var direction, position;
+		var direction, positionX, positionY;
 
 		//スワイプ開始時の横方向の座標を格納
 		function onTouchStart(event) {
-			position = getPosition(event);
+			positionX = getPositionX(event);
+			positionY = getPositionY(event);
 			direction = '';
 		}
 
 		//スワイプの方向（left／right）を取得
 		function onTouchMove(event) {
-			if (position - getPosition(event) > 70) {
-				direction = 'next';
-			} else if (position - getPosition(event) < -70){
-				direction = 'prev';
+			var distanceX = positionX - getPositionX(event);
+			var distanceY = positionY - getPositionY(event);
+			if($calendar.fullCalendar('getView').type === 'month') {
+				if (distanceX > 70) {
+					direction = 'next';
+				} else if (distanceX < -70){
+					direction = 'prev';
+				}
+			} else {
+				if (distanceX > 70 && Math.abs(distanceY) < Math.abs(distanceX)) {
+					direction = 'next';
+				} else if (distanceX < -70 && Math.abs(distanceY) < Math.abs(distanceX)){
+					direction = 'prev';
+				}
 			}
 		}
-
+console.dir();
 		function onTouchEnd(event) {
 			if (direction !== ''){
 				$calendar.fullCalendar(direction);
 			}
 		}
 
-		function getPosition(event) {
+		function getPositionX(event) {
 			return event.originalEvent.touches[0].pageX;
+		}
+
+		function getPositionY(event) {
+			return event.originalEvent.touches[0].pageY;
 		}
 	});
 
@@ -123,6 +138,10 @@
 
 	.fuga {
 		font-size: 1.5em;
+	}
+
+	.c_year, .c_month, .c_day {
+		text-align: left;
 	}
 </style>
 </head>

@@ -8386,6 +8386,7 @@ function Calendar_constructor(element, overrides) {
 
 		header = t.header = new Header(t, options);
 		headerElement = header.render();
+
 		if (headerElement) {
 			element.prepend(headerElement);
 		}
@@ -8614,7 +8615,9 @@ function Calendar_constructor(element, overrides) {
 
 
 	function updateHeaderTitle() {
-		header.updateTitle(currentView.title);
+		// coconala ヘッダの更新をカスタム
+		var d = currentView.calendar.selectedDate;
+		header.updateTitleCustom(d.year() + '年', (d.month() + 1) + '月', (currentView.type === 'agendaDay')?d.date() + '日':'');
 	}
 
 
@@ -9122,6 +9125,9 @@ function Header(calendar, options) {
 	t.enableButton = enableButton;
 	t.getViewsWithButtons = getViewsWithButtons;
 
+	// coconala 新しくタイトルを更新する関数を追加
+	t.updateTitleCustom = updateTitleCustom;
+
 	// locals
 	var el = $();
 	var viewsWithButtons = [];
@@ -9139,7 +9145,6 @@ function Header(calendar, options) {
 				.append(renderSection('right'))
 				.append(renderSection('center'))
 				.append('<div class="fc-clear"/>');
-
 			return el;
 		}
 	}
@@ -9174,7 +9179,8 @@ function Header(calendar, options) {
 					var button; // the element
 
 					if (buttonName == 'title') {
-						groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
+						// coconala タイトルを編集
+						groupChildren = groupChildren.add($('<div class="c_year">&nbsp;</div><div class="c_month">&nbsp;</div><div class="c_day">&nbsp;</div>')); // we always want it to take up height
 						isOnlyButtons = false;
 					}
 					else {
@@ -9308,13 +9314,19 @@ function Header(calendar, options) {
 				}
 			});
 		}
-
 		return sectionEl;
 	}
 
 
 	function updateTitle(text) {
 		el.find('h2').text(text);
+	}
+
+	function updateTitleCustom(y, m, d) {
+		// coconala ヘッダの更新をカスタム
+		el.find('.c_year').text(y);
+		el.find('.c_month').text(m);
+		el.find('.c_day').text(d);
 	}
 
 
