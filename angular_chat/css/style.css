@@ -1,0 +1,33 @@
+@charset "utf-8";
+* {
+  font: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic",
+  sans-serif;
+  font-size:small;
+}
+
+#pg_head h1{
+  font-size:20px;
+}
+
+#ct_messageTable{
+  border-bottom: 1px solid #B0C4DE;
+}
+#ct_messageTable .ct_left{
+  width:140px;
+  vertical-align: top;
+  background-color: #F0F8FF;
+  border-left: 1px solid #B0C4DE;
+  border-top: 1px solid #B0C4DE;
+  padding:5px 10px;
+}
+#ct_messageTable .ct_right{
+  width:500px;
+  vertical-align: top;
+  border-left: 1px solid #B0C4DE;
+  border-right: 1px solid #B0C4DE;
+  border-top: 1px solid #B0C4DE;
+  padding:5px 10px;
+}
+#ct_messageTable .ct_date{
+  font-size:10px;
+}
