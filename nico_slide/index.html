@@ -3,37 +3,260 @@
 <head>
   <meta charset="utf-8">
   <title>Nico Slide</title>
-  <link rel="stylesheet" type="text/css" href="js/lib/reveal/css/reveal.min.css">
-  <link rel="stylesheet" type="text/css" href="js/lib/reveal/css/theme/sky.css">
-  <link rel="stylesheet" type="text/css" href="css/index.css" charset="utf-8">
+  <link rel="stylesheet" href="js/lib/reveal/css/reveal.min.css">
+  <link rel="stylesheet" href="js/lib/reveal/css/theme/sky.css">
+  <link rel="stylesheet" href="js/lib/reveal/lib/css/zenburn.css">
+  <link rel="stylesheet" href="css/index.css" charset="utf-8">
 </head>
 <body>
 
 <div id="main-slide" class="reveal">
   <div class="slides">
 
-<section>
-  <div style="font-size:48px;line-height:80px;">タイトルを入れる</div>
-  <br>
-  <p>
-    <small>Created by Rei Matsushita / <a href="http://twitter.com/rei_m" target="_blank">@rei_m</a></small>
-  </p>
+<section class="top_slide">
+  <div class="top_slide__title">REVEAL.jsとMilkcocoaで双方向LTする</div>
+  <div class="top_slide__title--meetup">
+    <img src="image/zphyo_icon.png" width="100px" alt="アイコン" />
+  </div>
 </section>
 
-<section>
-  <h3>1枚目</h3>
-  <br>
-  <p class="fragment" style="text-align:left;">テキストテキストテキスト</p>
+<section class="slide--middle">
+
+  <div class="self-introduction__name">
+    <a href="https://twitter.com/rei_m" target="_blank">@rei_m</a> / Rei Matsushita
+  </div>
+
+  <div class="self-introduction__detail">
+    <div class="self-introduction__detail__item">
+      Application Engineer
+    </div>
+    <dl class="self-introduction__detail__item">
+      <dt>Skills</dt>
+      <dd>JavaScript</dd>
+      <dd>Node.js</dd>
+      <dd>Android Java</dd>
+      <dd>C#</dd>
+      <dd style="font-weight:bold;color:#FF6347">Elixir（今ハマり中）</dd>
+    </dl>
+    <dl class="self-introduction__detail__item">
+      <dt>Sites</dt>
+      <dd>はてなブログ : <a href="http://rei19.hatenablog.com">もやもやエンジニア</a></dd>
+      <dd>Facebook : <a href="https://www.facebook.com/rei.matsushita">https://www.facebook.com/rei.matsushita</a></dd>
+      <dd>アプリ : <a href="https://itunes.apple.com/jp/app/xin-kankarenda/id595392934?mt=8">新刊カレンダー</a></dd>
+    </dl>
+  </div>
+
   <aside class="notes">
+    自己紹介
   </aside>
 </section>
 
 <section>
-  <h3>2枚目</h3>
-  <br>
-  <p class="fragment" style="text-align:left;">テキストテキストテキスト</p>
+  <dl class="agenda">
+    <dt>本日のアジェンダ</dt>
+    <dd>1) いきなりデモ</dd>
+    <dd>2) Milkcocoaの紹介</dd>
+    <dd>3) REVEAL.jsの紹介</dd>
+  </dl>
+
   <aside class="notes">
+    アジェンダ
   </aside>
+</section>
+
+<section>
+
+  <div class="text--medium">
+    このURLを開いてください。PC・スマホどちらでも大丈夫です。
+  </div>
+  <div class="text--small">
+    `nico_slide`でググってGithubのページを開き、Readmeから飛ぶと早いです。
+  </div>
+  <div class="demo-url">
+    <a href="https://rei-m.github.io/nico_slide/comment/" target="_blank" style="color:#b22222">https://rei-m.github.io/nico_slide/comment/</a>
+  </div>
+
+  <aside class="notes">
+    デモ用URL載せる
+  </aside>
+</section>
+
+<section>
+
+  <div class="text--medium">
+    機能の紹介
+  </div>
+
+  <div style="position:relative;">
+    <img src="image/capcha_comment.png" alt="コメント画面キャプチャ" />
+    <div class="fragment capcha-content capcha-content--first"></div>
+    <div class="fragment capcha-content capcha-content--second"></div>
+    <div class="fragment capcha-content capcha-content--third"></div>
+  </div>
+
+  <aside class="notes">
+    デモ用URL載せる
+  </aside>
+</section>
+
+<section>
+
+  <div class="text--medium">
+    Milkcocoaの紹介
+  </div>
+
+  <div style="position:relative;">
+    <img src="image/milkcocoa_struct.png" alt="Milkcocoa" height="500px" />
+  </div>
+
+  <aside class="notes">
+    構成のせる
+  </aside>
+
+</section>
+
+<section>
+
+  <div class="text--medium">
+    使い方
+  </div>
+
+  <div class="sample">
+    <span class="sample__title">Milkcocoaからデータストアを取得する</span>
+    <pre class="sample__code"><code data-trim class="hljs javascript">
+var messageDataStore = (function() {
+  var milkcocoa = new MilkCocoa("hogehoge.mlkcca.com");
+  return milkcocoa.dataStore("zouhyou1");
+})();
+</code></pre>
+  </div>
+
+  <div class="sample">
+    <span class="sample__title">メッセージをPublishする</span>
+    <pre class="sample__code"><code data-trim class="hljs javascript">
+messageDataStore.send({
+  content: "sendはデータストアに保存されない"
+});
+
+messageDataStore.push({
+  content: "pushはデータストアに保存される"
+});
+</code></pre>
+  </div>
+
+  <aside class="notes">
+    コードのせる
+  </aside>
+
+</section>
+
+<section>
+
+  <div class="text--medium">
+    使い方
+  </div>
+
+  <div class="sample">
+    <span class="sample__title">MilkcocoaからSubscribeされたメッセージを受け取るコールバック</span>
+    <pre class="sample__code"><code data-trim class="hljs javascript">
+messageDataStore.on('push', function(pushed) {
+  console.dir(pushed);
+});
+</code></pre>
+  </div>
+
+  <div class="sample">
+    <span class="sample__title">Milkcocoaに保存されているデータをすべて取得する</span>
+    <pre class="sample__code"><code data-trim class="hljs javascript">
+messageDataStore.stream().next(function(err, data) {
+  data.map(function(v) {
+    ・・・
+  });
+});
+</code></pre>
+  </div>
+
+  <aside class="notes">
+    コードのせる
+  </aside>
+
+</section>
+
+<section>
+
+  <div class="text--large">
+    超お手軽ですね！
+  </div>
+
+  <aside class="notes">
+    コメント
+  </aside>
+
+</section>
+
+<section>
+
+  <div class="text--medium">
+    REVEAL.jsの紹介
+  </div>
+
+  <div>
+    <img src="image/reveal_js.png" alt="REVEAL.js" />
+  </div>
+
+  <aside class="notes">
+    多分、時間ないのでロゴだけ
+  </aside>
+
+</section>
+
+<section>
+
+  <div class="text--medium">
+    使い方
+  </div>
+
+  <div class="sample">
+    <span class="sample__title">Sectionタグの中身が1ページ分になります。これを量産するだけでスライドっぽくなります。</span>
+    <pre class="sample__code"><code data-trim class="hljs html">
+
+&lt;section&gt;
+
+  &lt;div class="text--medium"&gt;
+    使い方
+  &lt;/div&gt;
+
+  &lt;div class="sample"&gt;
+    &lt;span class="sample__title"&gt;Sectionタグの中身が1ページ分になります&lt;/span&gt;
+  &lt;/div&gt;
+
+&lt;/section&gt;
+
+</code></pre>
+  </div>
+
+  <aside class="notes">
+    1ページ分のHTML載せる
+  </aside>
+
+</section>
+
+<section class="text--medium">
+  <div>まとめ</div>
+
+  <dl class="summary">
+    <dd>Milkcocoaを使うと簡単にWebSocketを使ったメッセージのPub/Subが実装できます</dd>
+    <dd>REVEAL.jsを使うとHTML/CSSベースでスライドが作れます</dd>
+    <dd>2つ組み合わせるとリスナー参加型のLTができちゃいます</dd>
+  </dl>
+
+  <aside class="notes">
+    駆け足でまとめ
+  </aside>
+</section>
+
+<section class="text--large">
+  <div style="color:#ff8c00;font-weight:bold;">Have a nice Ligtning Talk !!</div>
 </section>
 
   </div>

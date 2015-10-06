@@ -2,3 +2,112 @@
   position: absolute;
   right: 0;
 }
+
+.reveal .text--large {
+  font-size: 40px;
+}
+
+.reveal .text--medium {
+  font-size: 30px;
+}
+
+.reveal .text--small {
+  font-size: 20px;
+}
+
+.reveal .sample__title {
+   font-size:20px;
+}
+
+.reveal .top_slide {
+  height: 100%;
+}
+
+.reveal .top_slide__title {
+  font-size:48px;
+  line-height:80px;
+  margin-top: 24%;
+}
+
+.reveal .top_slide__title--meetup {
+  position: absolute;
+  bottom: 16%;
+  right: 0;
+}
+
+.reveal .slide--middle {
+  text-align: left;
+  height: 100%;
+}
+
+.reveal .self-introduction__name {
+  margin-top: 36px;
+  font-weight: bold;
+}
+
+.reveal .self-introduction__detail {
+  margin-top: 56px;
+  font-size: 24px;
+}
+
+.reveal .self-introduction__detail__item {
+  margin-left: 24px;
+}
+
+.reveal .self-introduction__detail__item dd {
+  margin-left: 24px;
+  font-size:20px;
+}
+
+.reveal .agenda {
+  margin: auto;
+  width:560px;
+  text-align: center;
+}
+
+.reveal .agenda dt {
+  margin-bottom: 48px;
+}
+
+.reveal .agenda dd {
+  text-align: left;
+  font-size: 30px;
+}
+
+.reveal .demo-url {
+  margin-top: 36px;
+  font-size: 40px;
+}
+
+.reveal .capcha-content {
+  position: absolute;
+  border: 5px dotted #228B22;
+}
+
+.reveal .capcha-content--first {
+  top:0;
+  width:500px;
+  height:350px;
+}
+
+.reveal .capcha-content--second {
+  top:370px;
+  width:500px;
+  height:232px;
+}
+
+.reveal .capcha-content--third {
+  top:0;
+  right:0;
+  width:420px;
+  height:602px;
+}
+
+.reveal .summary {
+  margin-top: 48px;
+  text-align: left;
+}
+
+.reveal .summary dd {
+  margin-bottom: 16px;
+}
