@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tech Lunch</title>
+  <link rel="stylesheet" href="../../js/lib/reveal/css/reveal.min.css">
+  <link rel="stylesheet" href="../../js/lib/reveal/css/theme/sky.css">
+  <link rel="stylesheet" href="../../js/lib/reveal/lib/css/zenburn.css">
+  <link rel="stylesheet" href="../../css/index.css" charset="utf-8">
+</head>
+<body>
+
+<div id="main-slide" class="reveal">
+  <div class="slides">
+
+<section class="top_slide">
+  <div class="top_slide__title">JavaScriptで "We are hiring" しようぜ</div>
+  <div class="top_slide__title--meetup">
+    <img src="image/logo.png" width="100px" alt="アイコン" />
+  </div>
+</section>
+
+<section class="slide--middle">
+
+  <div class="self-introduction__name">
+    <a href="https://twitter.com/rei_m" target="_blank">@rei_m</a> / Rei Matsushita
+  </div>
+
+  <div class="self-introduction__detail">
+    <div class="self-introduction__detail__item">
+      Application Engineer
+    </div>
+    <dl class="self-introduction__detail__item">
+      <dt>Skills</dt>
+      <dd>JavaScript</dd>
+      <dd>Node.js</dd>
+      <dd>C#</dd>
+      <dd>Android</dd>
+      <dd style="color:#9370DB">Elixir</dd>
+      <dd style="color:#FFA500">Kotlin</dd>
+      <dd>Swift &lt;- 始めました </dd>
+    </dl>
+  </div>
+  <div class="self-introduction__detail_skillset">
+        <img src="image/skill.png" width="400px" alt="Skill">
+      </div>
+  <aside class="notes">
+    自己紹介
+  </aside>
+</section>
+
+<section>
+  <dl>
+    <dt style="font-size:32px;margin-bottom:32px;">宣伝</dt>
+    <dd style="font-size:24px;">アプリリリースしました。Androidの人は使ってみてね</dd>
+    <dd style="font-size:24px;">NaoyaさんのHbFavのAndroid版</dd>
+    <img src="image/sc_app.png" width="350px" alt="アイコン" style="border:none;" />
+  </dl>
+</section>
+
+<section>
+  <div>
+    <span class="text--medium" style="display:block;">さて、みなさん</span>
+    <span class="fragment text--medium">新しいサービスやサイトがオープンした時、何をしますか？</span><br><br>
+    <span class="fragment text--large">僕は。。。</span>
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    おもむろにソースを覗きます
+  </div>
+  <div>
+    view-source:https://answer.jp/
+  </div>
+  <img src="image/cap_answer.png" alt="answer" width="700" />
+</section>
+
+<section>
+  <dl>
+    <dd style="margin-bottom:24px;">大抵の場合は何もない。。。</dd>
+    <dd>が、まれに何かが埋まっている</dd>
+  </dl>
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    view-source:https://www.mozilla.org/ja/firefox/new/
+  </div>
+  <img src="image/cap_mozilla.png" alt="" width="700" />
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    view-source:http://dotinstall.com/
+  </div>
+  <img src="image/cap_dotinstall.png" alt="" width="700" />
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    view-source:https://www.tumblr.com/
+  </div>
+  <img src="image/cap_tumblr.png" alt="" width="700" />
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    view-source:http://www.kayac.com/
+  </div>
+  <img src="image/cap_kayac.png" alt="" width="700" />
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    <a href="http://e0166.blog89.fc2.com/" target="_blank">view-source:http://e0166.blog89.fc2.com/</a>
+  </div>
+  <img src="image/cap_homeneta.png" alt="" width="700" />
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    view-source:http://futuregadget-lab.com/
+  </div>
+  <img src="image/cap_fg_1.png" alt="" width="700" />
+  <img src="image/cap_fg_2.png" alt="" width="700" />
+  <img src="image/cap_fg_3.png" alt="" width="700" />
+</section>
+
+<section>
+  <div>
+    <span class="text--small" style="display:block;">という感じでソースコードにメッセージを書いておくと面白い。ただ。。。</span>
+    <span class="fragment text--medium" style="display:block;">HTMLのソースコードをだけならエンジニアでなくてもできる。。。</span>
+    <span class="fragment text--medium">エンジニアならこういうのが面白いのでは！</span>
+  </div>
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    <a href="https://jp.pinterest.com/" target="_blank">https://jp.pinterest.com/</a>
+  </div>
+
+  <div>
+    <img src="image/cap_pinterest.png" alt="" />
+  </div>
+</section>
+
+<section>
+  <div style="margin-bottom:24px;">
+    <a href="http://cookpad.com/" target="_blank">http://cookpad.com/</a>
+  </div>
+
+  <div>
+    <img src="image/cap_cookpad.png" alt="" />
+  </div>
+</section>
+
+<section>
+  <div>
+    <span class="text--medium" style="display:block;">同じようなのを仕込んでみた</span>
+  </div>
+</section>
+
+<section>
+  <div style="margin-bottom:40px;" class="text--medium">
+    console.logは実はスタイルも指定できる
+  </div>
+  <pre class="sample__code"><code data-trim class="hljs javascript">
+    console.log("%c♥ web? %c--> %cjoinUs() %c👺",
+      "color: red; font-size: 14px",
+      "color: blue; font-size: 10px",
+      "color: green; font-size: 28px",
+      "color: red; font-size: 28px");
+  </code></pre>
+</section>
+
+<section>
+  <div style="margin-bottom:40px;" class="text--medium">
+    AAはasciify(npm管理下)を使うと楽に作ることができる
+  </div>
+  <pre class="sample__code" style="background-color:black;color:white;">
+
+    $ npm install -g asciify
+    $ asciify "Supership" -a
+  </pre>
+
+  <pre class="sample__code" style="background-color:black;color:white;">
+
+    047: eftirobot
+     ___                          _    _
+    /  _)                        ( )  (_)
+    \_"-.  _ _  ___  ___  __  __ | |_  _  ___
+     __) )( U )( o \( o_)( _)(_' ( _ )( )( o \
+    /___/ /___\/ __/ \(  /_\ /__)/_\||/_\/ __/
+               |_|                       |_|
+
+
+    048: eftitalic
+        ___
+      ,' _/        _   __  _   __  /7  ()   _
+     _\ `.  /7/7  /o|,'o/ //7 (c' / \ /7   /o|
+    /___,' /__/  /_,'|_( //  /__)/n_///   /_,'
+                //                       //   
+  </pre>
+</section>
+
+<section class="text--large">
+  <div style="color:#ff8c00;font-weight:bold;">ご清聴ありがとうございました</div>
+</section>
+
+  </div>
+</div>
+
+<script src="//cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
+<script src="../../js/dataStore.js" charset="utf-8"></script>
+<script src="../../js/index.js" charset="utf-8"></script>
+<script src="../../js/lib/reveal/js/reveal.min.js" charset="utf-8"></script>
+<script src="../../js/lib/reveal/lib/js/head.min.js"></script>
+<script>
+
+  console.log("%c♥ web? %c--> %cjoinUs() %c👺",
+    "color: red; font-size: 14px",
+    "color: blue; font-size: 10px",
+    "color: green; font-size: 28px",
+    "color: red; font-size: 28px");
+
+  window.joinUs = function(){
+console.log("\n" +
+"%cWelcome \n\n%c" +
+"  ad88888ba                                                                88           88               \n" +
+" d8\"     \"8b                                                               88           \"\"               \n" +
+" Y8,                                                                       88                            \n" +
+" `Y8aaaaa,    88       88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYba,  88,dPPYba,   88  8b,dPPYba,   \n" +
+"   `\"\"\"\"\"8b,  88       88  88P'    \"8a  a8P_____88  88P'   \"Y8  I8[    \"\"  88P'    \"8a  88  88P'    \"8a  \n" +
+"         `8b  88       88  88       d8  8PP\"\"\"\"\"\"\"  88           `\"Y8ba,   88       88  88  88       d8  \n" +
+" Y8a     a8P  \"8a,   ,a88  88b,   ,a8\"  \"8b,   ,aa  88          aa    ]8I  88       88  88  88b,   ,a8\"  \n" +
+"  \"Y88888P\"    `\"YbbdP'Y8  88`YbbdP\"'    `\"Ybbd8\"'  88          `\"YbbdP\"'  88       88  88  88`YbbdP\"'   \n" +
+"                           88                                                               88           \n" +
+"                           88                                                               88           \n" +
+"\n",
+"color: blue; font-size: 14px",
+"color: blue; font-size: 8px")
+
+    setTimeout(function() {
+        window.location.href="https://recruit.supership.jp/"
+    }, 2000);
+  };
+
+  var revealRoot = '../../js/lib/reveal/';
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: revealRoot + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: revealRoot + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: revealRoot + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: revealRoot + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: revealRoot + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: revealRoot + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+</script>
+</body>
+</html>
