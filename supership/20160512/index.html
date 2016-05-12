@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Supershipエンジニア交流会</title>
+  <link rel="stylesheet" href="../../js/lib/reveal/css/reveal.min.css">
+  <link rel="stylesheet" href="../../js/lib/reveal/css/theme/sky.css">
+  <link rel="stylesheet" href="../../js/lib/reveal/lib/css/zenburn.css">
+  <link rel="stylesheet" href="../../css/index.css" charset="utf-8">
+</head>
+<body>
+
+<div id="main-slide" class="reveal">
+  <div class="slides">
+
+<section class="top_slide">
+  <div class="top_slide__title">Amigoのフロントの話</div>
+  <div style="margin-top:150px;font-size:28px;">2016/05/12 松下 嶺</div>
+  <div class="top_slide__title--meetup">
+    <img src="image/logo.png" width="100px" alt="アイコン" />
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    アジェンダ
+  </div>
+
+  <div class="text--small" style="width: 500px;margin: auto; text-align: left;">
+    - 自己紹介 <br>
+    - Amigoの開発体制とか採用している技術について <br>
+    - Stateを意識した設計
+  </div>
+</section>
+
+<section class="slide--middle">
+
+  <div class="self-introduction__name">
+    自己紹介
+  </div>
+
+  <div class="self-introduction__name">
+    <a href="https://twitter.com/rei_m" target="_blank">@rei_m</a> / Rei Matsushita (31)
+  </div>
+
+  <div class="self-introduction__detail">
+    <div class="self-introduction__detail__item">
+      新規サービス開発室所属
+    </div>
+    <dl class="self-introduction__detail__item">
+      <dt>経歴</dt>
+      <dd>
+        ソフトウエア興業 (2007 〜 2009)<br />
+        <span style="font-size:16px;">
+          &nbsp;&nbsp;&nbsp;&nbsp;- SIer。社員数3000人超えとかでした。やべぇ <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;- Excel職人の朝は早い <br>
+        </span>
+      </dd>
+      <dd>
+        一休 (2009 〜 2015) <br>
+        <span style="font-size:16px;">
+          &nbsp;&nbsp;&nbsp;&nbsp;- WindowsServerの上でWebサービス作る人。 一休レストランというレストラン予約サイトをメインで担当。<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;- オンプレWindowsというWeb業界的にはレアな環境。SSHでログインて何それおいしいの？ <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;- 開発以外も組織改善とかGitHubの導入とかなんかいろいろやった。
+        </span>
+      </dd>
+      <dd>
+        Supership (2015/11 〜) <br>
+        <span style="font-size:16px;">
+          &nbsp;&nbsp;&nbsp;&nbsp;- Androidの人
+        </span>
+      </dd>
+    </dl>
+
+    <div class="self-introduction__detail_skillset" style="top:20%;">
+      <img src="image/self.png" width="200px" alt="self">
+    </div>
+  </div>
+  <aside class="notes">
+    自己紹介
+  </aside>
+</section>
+
+<!--
+<section class="slide--middle">
+
+  <div class="self-introduction__detail">
+    <dl class="self-introduction__detail__item">
+      <dt>Skills</dt>
+      <dd>JavaScript</dd>
+      <dd>TypeScript</dd>
+      <dd>ES2015</dd>
+      <dd>Node.js</dd>
+      <dd>C#</dd>
+      <dd>Android</dd>
+      <dd>Elixir</dd>
+      <dd style="color:#FFA500">Kotlin</dd>
+      <dd>Swift &lt;- 最近始めました </dd>
+    </dl>
+  </div>
+  <div class="self-introduction__detail_skillset">
+    <img src="image/skill_20160512.png" width="400px" alt="Skill">
+  </div>
+  <aside class="notes">
+    自己紹介
+  </aside>
+</section>
+-->
+
+<section>
+  <div class="text--large">
+    Amigoの開発体制とか採用している技術について
+  </div>
+</section>
+
+<section>
+  <div class="text--large">
+    Amigoってなに？？
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    現実を超えるコミュニケーションを実現するアプリ
+  </div>
+  <div>
+    <img src="./image/amigo_store.png" alt="amigo" style="width:500px;border:none;" />
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    Android側の体制
+  </div>
+
+  <div class="text--small" style="width: 400px;margin: auto; text-align: left;">
+    - 動画投稿まわりの機能を担当 * 1 ← t-kashima<br>
+    - 動画の加工まわりの機能を担当 * 1 ← 僕
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    Android開発で採用している技術
+  </div>
+
+  <div class="text--small" style="width: 720px;margin: auto; text-align: left;">
+    - <span style="font-size:32px;font-weight: bold;">Kotlin</span>で実装。今年の2月に 1.0 になったタイミングで採用を決定。<br>
+    - Javaからの移行を進めつつアプリの開発を進める。いまのとこ75%くらい。 <br>
+    - モバイルのDBにはRealmを採用。
+  </div>
+
+  <div style="text-align:right;margin-top20px;">
+    <img src="image/kotlin.png" alt="Kotlin" style="width:400px;border:none;">
+  </div>
+</section>
+
+<section>
+  <div class="text--large">
+    本題: Stateを意識した設計
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    Amigoの動画（以下、キャンバス）の編集画面はイベントが多い
+  </div>
+
+  <dl class="text--small" style="margin: auto; width: 700px;text-align: left;">
+    <dt>- キャンバスにリアクションを載せる</dt>
+    <dt>- リアクションを追加された順に再生する</dt>
+    <dt>- 特定のユーザーのリアクションを強調表示する</dt>
+    <dt>- メッセージを送信する</dt>
+    <dt>- リアクションとメッセージの履歴を表示する</dt>
+    <dt>- バックグラウンドのタスクからリアクションの更新を受け取って表示する</dt>
+    <dt>etc ...</dt>
+  </dl>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    一つのVCでこれを全部管理しようとするとVCは爆発する
+  </div>
+
+  <div class="text--small" style="margin-bottom:50px;text-align:left;width:700px; margin: auto;">
+    例えばリアクションはバックグラウンドで同期する仕組みが動いているので、
+    初期データのローディング中やリアクション再生中などは画面に追加描画しない対応が必要。<br>
+    ここで isほげほげ とか状態を表すフラグをメンバ変数に複数個作った日にはメンテできる気がしないし、後からの機能追加のコストもやばい
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    状態遷移図とStateパターンを使った設計
+  </div>
+
+  <div class="text--small" >
+    状態遷移図を書いてStateの変化を整理してみる
+  </div>
+
+  <div class="">
+    <img src="image/state.png" alt="State" style="width:1000px;border:none;">
+  </div>
+
+</section>
+
+<section>
+
+  <div class="text--medium" style="margin-bottom:50px;">
+    状態遷移図をStateパターンを使ってコードに落とし込む
+  </div>
+
+  <div class="">
+    <img src="image/state_code.png" alt="State" style="width:1000px;border:none;">
+  </div>
+
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    例えば入力待ちの状態のイベントの実装
+  </div>
+
+  <pre><code data-trim contenteditable>
+object VideoReactionFragmentStateIdle : AbsVideoReactionFragmentState() {
+
+  override fun onConditionCanvasUpdatedEvent(fragment: VideoReactionFragment, event: ConditionCanvasUpdatedEvent) {
+      super.onConditionCanvasUpdatedEvent(fragment, event)
+      if (event.canvasEntity.id == fragment.canvasId) {
+          fragment.refreshReaction()
+      }
+  }
+
+  override fun onReactionReplayButtonClicked(fragment: VideoReactionFragment) {
+      super.onReactionReplayButtonClicked(fragment)
+      fragment.next(VideoReactionFragmentStatePlaying)
+  }
+}
+</code></pre>
+
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    例えば再生中の状態のイベントの実装
+  </div>
+
+  <pre><code data-trim contenteditable>
+object VideoReactionFragmentStatePlaying : AbsVideoReactionFragmentState() {
+
+  override fun entry(fragment: VideoReactionFragment) {
+      super.entry(fragment)
+      fragment.hideReactionButtons()
+      fragment.startReplayReaction()
+  }
+
+  override fun exit(fragment: VideoReactionFragment) {
+      super.exit(fragment)
+      fragment.stopReplayReaction()
+      fragment.refreshReaction()
+      fragment.showReactionButtons()
+  }
+
+  override fun onReactionReplayFinished(fragment: VideoReactionFragment, event: ReactionReplayFinishedEvent) {
+    super.onReactionReplayFinished(fragment, event)
+    fragment.next(VideoReactionFragmentStateIdle)
+  }
+}
+</code></pre>
+
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    状態遷移図とStateパターンをアプリの開発に使うメリットとデメリット
+  </div>
+
+  <dl class="text--small" style="margin: auto; width: 800px;text-align: left;">
+    <dt>- 特定の状態の時に実行するべき処理と、実行するべきではない処理が明確に区別できる</dt>
+    <dt>- ユーザーの操作やイベントによってどの状態に移るかがわかりやすい</dt>
+    <dt>- 機能の追加が（比較的）容易</dt>
+    <dt>- コード量は増えるので使いどころは見極めが必要</dt>
+  </dl>
+
+</section>
+
+<section>
+
+  <div class="text--medium" style="margin-bottom:50px;">
+    まとめ
+  </div>
+
+  <dl class="text--small" style="margin: auto; width: 800px;text-align: left;">
+    <dt>- アプリ開発では状態を意識することが大事</dt>
+    <dt>- 複雑な操作と状態が要求される画面では状態遷移図を書いてStateパターンを使った実装に落とし込むとメンテが楽になる</dt>
+    <dt>- 設計の考え方自体は昔からあるOOPで大事な"抽象化"と"移譲"を意識している。新しい技術だけでなく古典的な思想も学ぶと実装の幅が広がる</dt>
+    <dt>- こんな感じで新規サービス開発室ではAmigoの開発をいい感じにがんばってます！</dt>
+  </dl>
+</section>
+
+<section class="text--large">
+  <div style="color:#ff8c00;font-weight:bold;">ご清聴ありがとうございました</div>
+</section>
+
+  </div>
+</div>
+
+<script src="//cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
+<script src="../../js/dataStore.js" charset="utf-8"></script>
+<script src="../../js/index.js" charset="utf-8"></script>
+<script src="../../js/lib/reveal/js/reveal.min.js" charset="utf-8"></script>
+<script src="../../js/lib/reveal/lib/js/head.min.js"></script>
+<script>
+
+  console.log("%c♥ web? %c--> %cjoinUs() %c👺",
+    "color: red; font-size: 14px",
+    "color: blue; font-size: 10px",
+    "color: green; font-size: 28px",
+    "color: red; font-size: 28px");
+
+  window.joinUs = function(){
+console.log("\n" +
+"%cWelcome \n\n%c" +
+"  ad88888ba                                                                88           88               \n" +
+" d8\"     \"8b                                                               88           \"\"               \n" +
+" Y8,                                                                       88                            \n" +
+" `Y8aaaaa,    88       88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYba,  88,dPPYba,   88  8b,dPPYba,   \n" +
+"   `\"\"\"\"\"8b,  88       88  88P'    \"8a  a8P_____88  88P'   \"Y8  I8[    \"\"  88P'    \"8a  88  88P'    \"8a  \n" +
+"         `8b  88       88  88       d8  8PP\"\"\"\"\"\"\"  88           `\"Y8ba,   88       88  88  88       d8  \n" +
+" Y8a     a8P  \"8a,   ,a88  88b,   ,a8\"  \"8b,   ,aa  88          aa    ]8I  88       88  88  88b,   ,a8\"  \n" +
+"  \"Y88888P\"    `\"YbbdP'Y8  88`YbbdP\"'    `\"Ybbd8\"'  88          `\"YbbdP\"'  88       88  88  88`YbbdP\"'   \n" +
+"                           88                                                               88           \n" +
+"                           88                                                               88           \n" +
+"\n",
+"color: blue; font-size: 14px",
+"color: blue; font-size: 8px");
+
+    setTimeout(function() {
+        window.location.href="https://recruit.supership.jp/"
+    }, 2000);
+  };
+
+  var revealRoot = '../../js/lib/reveal/';
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: revealRoot + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: revealRoot + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: revealRoot + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: revealRoot + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: revealRoot + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: revealRoot + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+</script>
+</body>
+</html>
