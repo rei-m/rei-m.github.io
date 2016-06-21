@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tech Lunch</title>
+  <link rel="stylesheet" href="../../js/lib/reveal/css/reveal.min.css">
+  <link rel="stylesheet" href="../../js/lib/reveal/css/theme/sky.css">
+  <link rel="stylesheet" href="../../js/lib/reveal/lib/css/zenburn.css">
+  <link rel="stylesheet" href="../../css/index.css" charset="utf-8">
+</head>
+<body>
+
+<div id="main-slide" class="reveal">
+  <div class="slides">
+
+<section class="top_slide">
+  <div class="top_slide__title" style="font-size:40px;">Web屋だった僕が初めてアプリリリースしたはなし</div>
+  <div class="top_slide__title--meetup">
+    <img src="image/logo.png" width="100px" alt="アイコン" />
+  </div>
+</section>
+
+<section>
+  <div>
+    <span class="text--medium" style="display:block;">そもそもなぜ個人で作るのか</span><br><br>
+    <span class="fragment text--medium">1. 新しい技術のアウトプットのため</span><br>
+    <span class="fragment text--medium">2. 単純に自分が欲しいから</span>
+  </div>
+</section>
+
+<section>
+  <div class="text--medium" style="margin-bottom:50px;">
+    最初作ったやつ
+  </div>
+  <div>
+
+  </div>
+  <img src="image/cap_app.png" alt="app" width="700" />
+</section>
+
+<section>
+  <dl>
+    <dd style="margin-bottom:24px;font-size:30px;">今のやつに至るまで2回くらい大きく変わったのでその辺の話など</dd>
+  </dl>
+</section>
+
+<section>
+  <dl style="text-align:left;width:600px;margin:auto;">
+    <dd style="margin-bottom:24px;">Ver 1.0</dd>
+    <dd>Language: JavaScript</dd>
+    <dd>Tool: Titanium Mobile</dd>
+    <dd>Database: SQLite</dd>
+    <dd>Server  : None(Amazone API直叩き)</dd>
+    <dd>Ad  : admob</dd>
+  </dl>
+</section>
+
+<section>
+  <div style="margin-bottom:24px;font-size:28px;">
+    最初はComicManagerという名前でリリース。<br />アイコンはフリー素材w(探したけどもう無かった)
+  </div>
+</section>
+
+<section>
+  <div>
+    <span class="text--medium" style="display:block;">リリースしてみた結果</span><br><br>
+    <span class="fragment text--medium">レビューサイトで紹介されて一瞬ランキングにのる</span><br>
+    <span class="fragment text--medium">が、すぐ失速</span><br>
+    <span class="fragment text--medium">広告の内容も収益も微妙な感じ</span><br>
+  </div>
+</section>
+
+<section>
+  <dl style="text-align:left;width:600px;margin:auto;font-size:24px;">
+    <dd style="margin-bottom:24px;">Ver 2.0へ</dd>
+    <dd>- アプリ名を "新刊カレンダー" に。ASO大事</dd>
+    <dd>- アイコンをちゃんとデザイナーさんに発注(2000円くらいだったような)</dd>
+    <dd>- レビューで機能要望が割と来てたので対応(作者単位での検索とか先月/来月の情報とか)</dd>
+    <dd>- 広告はnendにした</dd>
+  </dl>
+</section>
+
+<section>
+  <dl style="text-align:left;width:600px;margin:auto;font-size:24px;">
+    <dd style="margin-bottom:24px;">結果</dd>
+    <dd>順位上がった。ブックカテゴリの無料には常時100位くらいをうろうろする感じになった</dd>
+    <dd>広告の収益は上がった</dd>
+  </dl>
+</section>
+
+<section>
+  <div style="text-align:left;">
+    <span class="text--medium" style="display:block;text-align:center;">事件勃発</span><br><br>
+    <span class="fragment text--medium">APIがタイムアウトすることが多くなってAmazonに問い合わせた結果</span><br>
+    <span class="fragment text--medium">「そもそもお前そのアプリでAPI使うって申請してないだろうが、今すぐヤメレ」という返事をもらう</span><br>
+  </div>
+</section>
+
+<section>
+  <div style="text-align:left;">
+    <span class="text--medium" style="display:block;text-align:center;">なぜこんなことがおきたのか</span><br><br>
+    <span class="fragment text--medium">APIの利用申請で確かに違うサービス名を載せていたが、コメントにアプリで使うよと書いていたので大丈夫だと思っていた。申請通ったし。</span><br>
+    <span class="fragment text--medium">一応交渉したけど断固たる態度で拒否られた。結構アフィリも売上上がってたのでwin-winなはずなんだけど。。。</span><br>
+  </div>
+</section>
+
+<section>
+  <dl style="text-align:left;width:600px;margin:auto;font-size:24px;">
+    <dd style="margin-bottom:24px;">悲しみの中Ver 3.0へ</dd>
+    <dd>- しょうがないので自分でAPI作る</dd>
+    <dd>- さくらVPSにサーバー構築</dd>
+    <dd>- Node.js/MongoDBで省エネ構成</dd>
+    <dd>- データはWikiからマスタ情報を。某社のサイトから発売日情報をスクレイピングで集めるように。</dd>
+    <dd>- スクレイピングはscriptをNode.jsで書いてcronで日次で回すようにした</dd>
+  </dl>
+</section>
+
+<section>
+  <dl style="text-align:left;width:600px;margin:auto;font-size:24px;">
+    <dd style="margin-bottom:24px;">結果</dd>
+    <dd>レビューが低くなった。順位も下がった。</dd>
+    <dd>当然、広告の収益も下がった</dd>
+    <dd>アプリの質がはAmazon先生の高性能なAPIに比例していたので、急場しのぎのAPIではやはり劣化は避けられなかった。。。</dd>
+  </dl>
+</section>
+
+<section>
+  <dl style="text-align:left;width:600px;margin:auto;font-size:24px;">
+    <dd style="margin-bottom:24px;">今後</dd>
+    <dd>- 多分閉じる。</dd>
+    <dd>- ATS強制でサーバに証明書つっこむのめんどくさいのとTitaniumでメンテ出来る気しないｗ</dd>
+    <dd>- 最近は自分が作ったやつより出来がいいのが出てきたので</dd>
+  </dl>
+</section>
+
+<section class="text--large">
+  <div style="color:#ff8c00;font-weight:bold;">苦労話おわり</div>
+</section>
+
+  </div>
+</div>
+
+<script src="//cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
+<script src="../../js/dataStore.js" charset="utf-8"></script>
+<script src="../../js/index.js" charset="utf-8"></script>
+<script src="../../js/lib/reveal/js/reveal.min.js" charset="utf-8"></script>
+<script src="../../js/lib/reveal/lib/js/head.min.js"></script>
+<script>
+
+  console.log("%c♥ web? %c--> %cjoinUs() %c👺",
+    "color: red; font-size: 14px",
+    "color: blue; font-size: 10px",
+    "color: green; font-size: 28px",
+    "color: red; font-size: 28px");
+
+  window.joinUs = function(){
+console.log("\n" +
+"%cWelcome \n\n%c" +
+"  ad88888ba                                                                88           88               \n" +
+" d8\"     \"8b                                                               88           \"\"               \n" +
+" Y8,                                                                       88                            \n" +
+" `Y8aaaaa,    88       88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYba,  88,dPPYba,   88  8b,dPPYba,   \n" +
+"   `\"\"\"\"\"8b,  88       88  88P'    \"8a  a8P_____88  88P'   \"Y8  I8[    \"\"  88P'    \"8a  88  88P'    \"8a  \n" +
+"         `8b  88       88  88       d8  8PP\"\"\"\"\"\"\"  88           `\"Y8ba,   88       88  88  88       d8  \n" +
+" Y8a     a8P  \"8a,   ,a88  88b,   ,a8\"  \"8b,   ,aa  88          aa    ]8I  88       88  88  88b,   ,a8\"  \n" +
+"  \"Y88888P\"    `\"YbbdP'Y8  88`YbbdP\"'    `\"Ybbd8\"'  88          `\"YbbdP\"'  88       88  88  88`YbbdP\"'   \n" +
+"                           88                                                               88           \n" +
+"                           88                                                               88           \n" +
+"\n",
+"color: blue; font-size: 14px",
+"color: blue; font-size: 8px");
+
+    setTimeout(function() {
+        window.location.href="https://recruit.supership.jp/"
+    }, 2000);
+  };
+
+  var revealRoot = '../../js/lib/reveal/';
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: revealRoot + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: revealRoot + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: revealRoot + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: revealRoot + 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: revealRoot + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: revealRoot + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+</script>
+</body>
+</html>
